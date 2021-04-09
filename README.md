@@ -4,6 +4,8 @@ pictures
 
 - composer install
 - composer require symfony/mailer
+- composer require encore
+- yarn install
 
 ## Lancer les tests
 
