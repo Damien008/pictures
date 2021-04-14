@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AProposController!{% endblock %}
+
+{% block body %}
+<section class="aPropos">
+    
+                    <p>
+                        {{peintre.aPropos}}
+                    </p>
+                    <footer >
+                        {{peintre.prenom}} {{peintre.nom}}
+                    </footer>
+</section>
+{% endblock %}
