@@ -3,7 +3,9 @@
   {% for blogpost in blogposts %}
     <div class="card">
       <div class="card-body">
+      <a href="{{path('actualites_detail', {'slug': blogpost.slug})}}">
         <h5 class="card-title">{{blogpost.titre}}</h5>
+      </a>
         <p class="card-text">{{blogpost.contenu|u.truncate(150, '...', false )}}</p>
         <p class="card-text"><small class="text-muted">{{blogpost.createdAt|date('d.m.Y')}}</small></p>
       </div>
