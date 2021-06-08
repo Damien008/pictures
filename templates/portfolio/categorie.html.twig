@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    {% set img = categorie.peintures|last %}
+
+    {% for peinture in peintures %}
+        <div class="card " style="width: 18rem;">
+            <img src="{{img.file}}" class="card-img-top" alt="...">  
+        </div>
+    {% endfor %}
+
+{% endblock %}

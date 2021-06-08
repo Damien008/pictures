@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PortfolioController!{% endblock %}
+
+{% block body %}
+<h2>Portfolio</h2>
+<div class="card-group" style="display:grid; grid-template-columns:repeat(3,1fr);">
+{% for categorie in categories %}
+    {% set img = categorie.peintures|last %}
+    <a href="{{ path('portfolio_categorie', {'slug': categorie.slug })}}" style="text-decoration:none">
+        <div class="card " style="width: 18rem;">
+            <img src="{{img.file}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">{{categorie.nom}}</p>
+                <p class="card-text">{{categorie.description}}</p>
+            </div>
+        </div>
+    </a>
+{% endfor %}
+</div>
+
+{% endblock %}
