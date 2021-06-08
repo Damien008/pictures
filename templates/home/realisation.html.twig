@@ -2,7 +2,9 @@
   {% for peinture in peintures %}
     <div class="col">
       <div class="card h-100">
-        <img src="{{peinture.file}}" class="card-img-top" alt="...">
+        <a href="{{path("realisations_details", {'slug': peinture.slug})}}">
+          <img src="{{peinture.file}}" class="card-img-top" alt="...">
+        </a>
         <div class="card-body">
           <h5 class="card-title">{{peinture.nom}}</h5>
           <p class="card-text">{{peinture.description|u.truncate(200, '...', false) }}</p>
