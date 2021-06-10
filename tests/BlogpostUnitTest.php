@@ -2,9 +2,12 @@
 
 namespace App\Tests;
 
-use App\Entity\Blogpost;
-use App\Entity\User;
 use DateTime;
+use App\Entity\User;
+use App\Entity\Blogpost;
+use App\Entity\Peinture;
+use App\Entity\Categorie;
+use App\Entity\Commentaire;
 use PHPUnit\Framework\TestCase;
 
 class BlogpostUnitTest extends TestCase
@@ -56,5 +59,20 @@ class BlogpostUnitTest extends TestCase
         $this->assertEmpty($blogPost->getContenu());
         $this->assertEmpty($blogPost->getSlug());
         $this->assertEmpty($blogPost->getUser());
+        $this->assertEmpty($blogPost->getId());
+    }
+
+    public function testAddGetRemoveCommentaire()
+    {
+        $commentaire = new Commentaire();
+        $blogpost = new Blogpost();
+
+        $this->assertEmpty($blogpost->getCommentaires());
+
+        $blogpost->addCommentaire($commentaire);
+        $this->assertContains($commentaire, $blogpost->getCommentaires());
+
+        $blogpost->removeCommentaire($commentaire);
+        $this->assertEmpty($blogpost->getCommentaires());
     }
 }

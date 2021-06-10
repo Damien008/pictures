@@ -11,6 +11,9 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class AppFixtures extends Fixture
 {
     public function __construct(UserPasswordEncoderInterface $encoder)
@@ -49,6 +52,18 @@ class AppFixtures extends Fixture
             $manager->persist($blogpost);
         }
 
+        // création blogpost de test
+
+        $blogpost = new Blogpost();
+
+            $blogpost->setTitre('Blogpost test')
+                     ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                     ->setContenu($faker->text(350))
+                     ->setSlug('Blogpost-test')
+                     ->setUser($user);
+                     
+            $manager->persist($blogpost);
+
         for ($k = 0; $k < 5; $k++) {
             $categorie = new Categorie();
 
@@ -78,6 +93,36 @@ class AppFixtures extends Fixture
                 $manager->persist($peinture);
             }
         }
+
+        // création catégorie pour test
+
+        $categorie = new Categorie();
+
+            $categorie->setNom('catégorie test')
+                      ->setDescription($faker->words(10, true))
+                      ->setSlug('catégorie-test');
+
+            $manager->persist($categorie);
+
+        // création peinture pour test
+
+        $peinture = new Peinture();
+    
+                $peinture->setNom('peinture test')
+                         ->setLargeur($faker->randomFloat(2, 20, 60))
+                         ->setHauteur($faker->randomFloat(2, 20, 60))
+                         ->setEnVente($faker->randomElement([true, false]))
+                         ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'))
+                         ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                         ->setDescription($faker->text())
+                         ->setPortfolio($faker->randomElement([true, false]))
+                         ->setSlug('peinture-test')
+                         ->setFile('/image/captain.jpg')
+                         ->addCategorie($categorie)
+                         ->setPrix($faker->randomFloat(2, 100, 9999))
+                         ->setUser($user);
+    
+                $manager->persist($peinture);
 
         
         $manager->flush();

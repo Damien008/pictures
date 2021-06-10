@@ -2,10 +2,11 @@
 
 namespace App\Tests;
 
-use App\Entity\Categorie;
-use App\Entity\Peinture;
-use App\Entity\User;
 use DateTime;
+use App\Entity\User;
+use App\Entity\Peinture;
+use App\Entity\Categorie;
+use App\Entity\Commentaire;
 use PHPUnit\Framework\TestCase;
 
 class PeintureUnitTest extends TestCase
@@ -99,6 +100,30 @@ class PeintureUnitTest extends TestCase
         $this->assertEmpty($peinture->getFile());
         $this->assertEmpty($peinture->getPrix());
         $this->assertEmpty($peinture->getUser());
+        $this->assertEmpty($peinture->getCategorie());
+        $this->assertEmpty($peinture->getId());
+    }
+
+    public function testAddGetRemoveCommentaire()
+    {
+        $peinture = new Peinture();
+        $commentaire = new Commentaire();
+
+        $this->assertEmpty($peinture->getCommentaires());
+
+        $peinture->addCommentaire($commentaire);
+        $this->assertContains($commentaire, $peinture->getCommentaires());
+
+        $peinture->removeCommentaire($commentaire);
+        $this->assertEmpty($peinture->getCommentaires());
+    }
+
+    public function testAddGetRemoveCategorie()
+    {
+        $peinture = new Peinture();
+        $categorie = new Categorie();
+
+        $peinture->removeCategorie($categorie);
         $this->assertEmpty($peinture->getCategorie());
     }
 }
