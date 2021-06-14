@@ -21,7 +21,8 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
-
+/public/uploads/peintures/*
+!/public/uploads/peintures/captain.jpg
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
