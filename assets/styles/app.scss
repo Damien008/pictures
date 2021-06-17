@@ -4,9 +4,28 @@
     width: 100%;
     height: 500px;
 }
-
-img {
-    width: 50%;
+.container{
+    position: relative;
+    margin-bottom: 30px;
+}
+.link{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+}
+.portfolioLink{
+    text-decoration: none;
+    color: white;
 }
 
 .aPropos {
@@ -14,3 +33,4 @@ img {
     background-repeat: no-repeat;
     height: 50vh;
 }
+
