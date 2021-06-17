@@ -5,12 +5,12 @@
 {% block body %}
 <section>
     <h2>Réalisations</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 ">
     {% for peinture in peintures %}
         <div class="col">
             <div class="card h-100">
             <a href="{{path("realisations_details", {'slug': peinture.slug})}}">
-                <img src="{{vich_uploader_asset(peinture, 'imageFile')}}" class="card-img-top" alt="...">
+                <img src="{{vich_uploader_asset(peinture, 'imageFile')|imagine_filter('miniature')}}" class="card-img-top" alt="...">
             </a>
                 <div class="card-body">
                     <h5 class="card-title">{{peinture.nom}}</h5>
