@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Peinture;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
+use App\Service\CommentaireService;
 use App\Repository\PeintureRepository;
+use App\Repository\CommentaireRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,10 +37,28 @@ class PeintureController extends AbstractController
     /**
      * @Route("/realisations/{slug}", name="realisations_details")
      */
-    public function details(Peinture $peinture): Response
+    public function details(
+        Peinture $peinture,
+        Request $request,
+        CommentaireService $commentaireService,
+        CommentaireRepository $commentaireRepository
+        ): Response
     {
+        $commentaires = $commentaireRepository->findCommentaire($peinture);
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $commentaire = $form->getData();
+            $commentaireService->persistCommentaire($commentaire, null, $peinture);
+
+            return $this->redirectToRoute('realisations_details', ['slug' => $peinture->getSlug()]);
+        }
         return $this->render('peinture/details.html.twig', [
             'peinture' => $peinture,
+            'form' => $form->createView(),
+            'commentaires' => $commentaires
         ]);
     }
 }

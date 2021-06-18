@@ -1,0 +1,14 @@
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{message}}
+    </div>    
+{% endfor %}
+
+<div>
+    <p>Laisser un commentaire</p>
+    {{form_start(form)}}
+        {{form_widget(form)}}
+    {{form_end(form)}}
+</div>
+

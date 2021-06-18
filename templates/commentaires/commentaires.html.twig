@@ -1,0 +1,7 @@
+<div>
+{% for com in commentaires %}
+    {{com.auteur}}
+    {{com.createdAt|date('d/m/Y')}}
+    {{com.contenu}}
+{% endfor %}
+</div>
