@@ -14,3 +14,7 @@ php bin/phpunit --testdox
 ## Ajouter des données de test
 
 symfony console d:f:l
+
+test
+
+test2
